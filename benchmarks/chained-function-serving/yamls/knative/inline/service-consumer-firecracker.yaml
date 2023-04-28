@@ -23,7 +23,7 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: producer
+  name: consumer
   namespace: default
 spec:
   template:
@@ -31,12 +31,11 @@ spec:
       containers:
         - image: crccheck/hello-world:latest # Stub image. See https://github.com/vhive-serverless/vhive/issues/68
           imagePullPolicy: Always
-          #args: ["-addr", "consumer.default.svc.cluster.local"]
           env:
             - name: TRANSFER_TYPE
               value: "INLINE"
             - name: GUEST_IMAGE
-              value: "docker.io/vhiveease/chained-functions-serving-producer:latest"
+              value: "docker.io/vhiveease/chained-functions-serving-consumer:latest"
             - name: GUEST_PORT
               value: "80"
           ports:
